@@ -59,9 +59,18 @@ namespace LargeIntegerMultiplication
         }
         private static int[] getResult(int[] sum)
         {
-            int[] result = new int[1];
+            for (int i = 0; i < sum.Length; i++)
+            {
+                if (sum[i] > 9)
+                {
+                    if (i == sum.Length - 1)
+                        Array.Resize(ref sum, sum.Length + 1);
 
-            return result;
+                    sum[i + 1] += sum[i] / 10;
+                    sum[i] = sum[i] % 10;
+                }
+            }
+            return sum;
         }
     }
 }
